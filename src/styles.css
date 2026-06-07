@@ -8,8 +8,9 @@
   --radius-sm: calc(var(--radius) - 4px);
   --radius-md: calc(var(--radius) - 2px);
   --radius-lg: var(--radius);
-  --radius-xl: calc(var(--radius) + 4px);
-  --radius-2xl: calc(var(--radius) + 8px);
+  --radius-xl: calc(var(--radius) + 8px);
+  --radius-2xl: calc(var(--radius) + 18px);
+  --radius-3xl: calc(var(--radius) + 28px);
 
   --color-background: var(--background);
   --color-foreground: var(--foreground);
@@ -20,6 +21,8 @@
   --color-primary: var(--primary);
   --color-primary-foreground: var(--primary-foreground);
   --color-primary-soft: var(--primary-soft);
+  --color-gold: var(--gold);
+  --color-gold-soft: var(--gold-soft);
   --color-secondary: var(--secondary);
   --color-secondary-foreground: var(--secondary-foreground);
   --color-muted: var(--muted);
@@ -33,49 +36,56 @@
   --color-ring: var(--ring);
   --color-whatsapp: var(--whatsapp);
 
-  --font-display: "Fraunces", ui-serif, Georgia, serif;
-  --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
+  --font-display: "Playfair Display", ui-serif, Georgia, serif;
+  --font-sans: "Poppins", ui-sans-serif, system-ui, sans-serif;
 }
 
 :root {
-  --radius: 0.875rem;
+  --radius: 1.25rem;
 
-  /* Auradent palette — clean whites + soft medical blue */
-  --background: oklch(0.995 0.003 230);
-  --foreground: oklch(0.22 0.04 250);
+  /* Warm off-white + soft medical blue + gold accents */
+  --background: oklch(0.975 0.004 90);        /* #f7f7f5 */
+  --foreground: oklch(0.20 0.01 270);          /* #1c1c1c */
 
   --card: oklch(1 0 0);
-  --card-foreground: oklch(0.22 0.04 250);
-
+  --card-foreground: oklch(0.20 0.01 270);
   --popover: oklch(1 0 0);
-  --popover-foreground: oklch(0.22 0.04 250);
+  --popover-foreground: oklch(0.20 0.01 270);
 
-  --primary: oklch(0.58 0.13 245);
+  /* Soft medical blue */
+  --primary: oklch(0.74 0.045 240);            /* #9eb8ca */
   --primary-foreground: oklch(0.99 0.003 230);
-  --primary-soft: oklch(0.95 0.03 240);
+  --primary-soft: oklch(0.92 0.025 235);       /* #dce7ef */
 
-  --secondary: oklch(0.96 0.015 235);
-  --secondary-foreground: oklch(0.30 0.05 250);
+  /* Gold accent */
+  --gold: oklch(0.72 0.075 70);                /* #c4a27b */
+  --gold-soft: oklch(0.92 0.035 80);
 
-  --muted: oklch(0.97 0.008 235);
-  --muted-foreground: oklch(0.50 0.025 250);
+  --secondary: oklch(0.95 0.005 90);
+  --secondary-foreground: oklch(0.25 0.01 270);
 
-  --accent: oklch(0.92 0.04 230);
-  --accent-foreground: oklch(0.30 0.06 250);
+  --muted: oklch(0.95 0.005 90);
+  --muted-foreground: oklch(0.55 0.01 270);    /* #7b7b7b */
+
+  --accent: oklch(0.92 0.025 235);
+  --accent-foreground: oklch(0.25 0.04 250);
 
   --destructive: oklch(0.60 0.21 25);
   --destructive-foreground: oklch(0.99 0 0);
 
-  --border: oklch(0.92 0.012 235);
-  --input: oklch(0.93 0.012 235);
-  --ring: oklch(0.58 0.13 245);
+  --border: oklch(0.90 0.005 90);
+  --input: oklch(0.93 0.005 90);
+  --ring: oklch(0.74 0.045 240);
 
   --whatsapp: oklch(0.66 0.15 150);
 
-  --shadow-soft: 0 1px 2px oklch(0.58 0.13 245 / 0.04), 0 8px 24px oklch(0.58 0.13 245 / 0.06);
-  --shadow-elevated: 0 20px 60px -20px oklch(0.40 0.12 245 / 0.25);
-  --gradient-soft: linear-gradient(180deg, oklch(0.985 0.012 235) 0%, oklch(1 0 0) 100%);
-  --gradient-primary: linear-gradient(135deg, oklch(0.62 0.13 245), oklch(0.52 0.14 250));
+  --shadow-soft: 0 10px 30px oklch(0 0 0 / 0.05);
+  --shadow-elevated: 0 25px 60px oklch(0 0 0 / 0.08);
+  --shadow-glow: 0 18px 45px oklch(0.74 0.045 240 / 0.35);
+  --gradient-gold: linear-gradient(45deg, oklch(0.74 0.045 240), oklch(0.72 0.075 70));
+  --gradient-soft: linear-gradient(to right, oklch(0.94 0.025 235), oklch(0.985 0.004 90));
+  --gradient-hero: linear-gradient(180deg, oklch(0.985 0.004 90) 0%, oklch(0.94 0.025 235 / 0.55) 100%);
+  --glass: rgba(255, 255, 255, 0.45);
 }
 
 @layer base {
@@ -85,28 +95,38 @@
     background-color: var(--color-background);
     color: var(--color-foreground);
     font-family: var(--font-sans);
+    font-weight: 300;
     -webkit-font-smoothing: antialiased;
-    font-feature-settings: "ss01", "cv11";
   }
   h1, h2, h3, h4 {
     font-family: var(--font-display);
-    letter-spacing: -0.02em;
-    font-weight: 400;
+    letter-spacing: -0.01em;
+    font-weight: 500;
   }
 }
 
 @utility shadow-soft { box-shadow: var(--shadow-soft); }
 @utility shadow-elevated { box-shadow: var(--shadow-elevated); }
+@utility shadow-glow { box-shadow: var(--shadow-glow); }
+@utility bg-gradient-gold { background-image: var(--gradient-gold); }
 @utility bg-gradient-soft { background-image: var(--gradient-soft); }
-@utility bg-gradient-primary { background-image: var(--gradient-primary); }
+@utility bg-gradient-hero { background-image: var(--gradient-hero); }
+@utility glass {
+  background: var(--glass);
+  backdrop-filter: blur(18px);
+  -webkit-backdrop-filter: blur(18px);
+  border: 1px solid rgba(255,255,255,.4);
+}
 
 @keyframes fade-up {
-  from { opacity: 0; transform: translateY(16px); }
+  from { opacity: 0; transform: translateY(40px); }
   to { opacity: 1; transform: translateY(0); }
 }
-@keyframes fade-in {
-  from { opacity: 0; }
-  to { opacity: 1; }
+@keyframes fade-in { from { opacity: 0; } to { opacity: 1; } }
+@keyframes float-blur {
+  0%, 100% { transform: translate(0, 0); }
+  50% { transform: translate(40px, -30px); }
 }
-@utility animate-fade-up { animation: fade-up 0.8s cubic-bezier(0.22, 1, 0.36, 1) both; }
+@utility animate-fade-up { animation: fade-up 1.2s cubic-bezier(0.22, 1, 0.36, 1) both; }
 @utility animate-fade-in { animation: fade-in 1s ease-out both; }
+@utility animate-float-blur { animation: float-blur 12s ease-in-out infinite; }
